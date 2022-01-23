@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="eng\">
+
+<head>
+  <link rel=" stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<title>Document</title>
+
+<style>
+  body {
+    background-color: #222;
+  }
+
+  #buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #container {
+
+    border: 1px solid black;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 50%;
+    margin: auto;
+    position: relative;
+    top: 170px;
+    border-radius: 20px;
+    border: 3px solid white;
+
+
+  }
+
+  #heading {
+    font-weight: bold;
+    font-size: 6rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 1px 1px 2px pink;
+
+  }
+</style>
+
+
+<body>
+
+
+  <h1 id="heading">Spelling App</h1>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <div id="container">
+    <input id="input">
+    <div id="buttons">
+
+      <button id="getButton" class="btn btn-success">Check!</button>
+      <button id="getButton" class="btn btn-primary">Get word!</button>
+      <button id="getButton" class="btn btn-danger">Get a new word!</button>
+    </div>
+  </div>
+
+
+  <script>
+    var words = ["apple", "banana", "cat", "dog", "house", "white"];
+    var randomWord = words[Math.floor(Math.random() * words.length)];
+    // pick random word from array and multiply by length of array and round result down to be whole number
+
+    var button = document.getElementById('checkButton');
+    var button2 = document.getElementById('getButton');
+    var resetButton = document.getElementById('resetButton');
+
+
+
+    resetButton.addEventListener('click', function () {
+      location.reload();
+      //refresh browser
+    })
+    var speech = new SpeechSynthesisUtterance();
+    //spech API
+
+    button.addEventListener('click', function () {
+      var input = document.getElementById('input').value;
+
+      if (input == randomWord) {
+
+        speech.text = "You are correct!";
+        speech.rate = 0.85;
+
+      }
+      else if (input !== randomWord) {
+        speech.text = "You misspelled your word!" + "It is actually spelled" + randomWord.split("");
+
+        speech.rate = 0.85
+      }
+      window.speechSynthesis.speak(speech);
+
+    })
+
+    button.addEventListener('click', function () {
+      var input = document.getElementById('input').value;
+    })
+  </script>
+
+
+</body>
+
+</html>
